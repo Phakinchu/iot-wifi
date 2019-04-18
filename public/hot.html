@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <body>
+
+     <p>light :</p>
+      <h1 id="Sensorl">Good Evening!</h1>
+      <p>Temp :</p>
+      <h1 id="Sensort">Good Evening!</h1>
+      <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase.js"></script>
+      <script>
+        // Initialize Firebase
+        var config = {
+          apiKey: "AIzaSyCW6zOSzzsIyNXzPI8n__3eFmB8ofS7Yf4",
+          authDomain: "iot-wifi-71c20.firebaseapp.com",
+          databaseURL: "https://iot-wifi-71c20.firebaseio.com",
+          projectId: "iot-wifi-71c20",
+          storageBucket: "iot-wifi-71c20.appspot.com",
+          messagingSenderId: "710166421238"
+        };
+        firebase.initializeApp(config);
+        var Sensorl = document.getElementById('Sensorl');
+        var Sensort = document.getElementById('Sensort');
+        var dbReflight = firebase.database().ref().child('Sensor/Temp');
+        var dbReflighl = firebase.database().ref().child('Sensor/Light');
+        var sensor = firebase.database().ref().child('Sensor');
+        dbReflighl.on('value', snap => Sensorl.innerText = snap.val());
+        dbReflight.on('value', snap => Sensort.innerText = snap.val());
+        sensor.on('value', function(snapshot) {
+            console.log("not sss");
+            if(snapshot.child("lfake").val() == 777){
+                window.location.href = './manual_song.html';
+            }else if(snapshot.child("lfake").val() == 888) {
+                window.location.href = './manual_song2.html';
+            }
+            if (snapshot.child("Light").val() > 0 && snapshot.child("Light").val() < 0 && snapshot.child("Temp").val() > 20 && snapshot.child("Temp").val() < 20 ) {
+                console.log("sssss");
+                window.location.href = './rain.html';
+            }else if(snapshot.child("Light").val() > 21 && snapshot.child("Light").val() < 0 && snapshot.child("Temp").val() > 40 && snapshot.child("Temp").val() < 20) {
+                window.location.href = './morning.html';
+            }else if(snapshot.child("Light").val() > 41  && snapshot.child("Light").val() < 0 && snapshot.child("Temp").val() > 50 && snapshot.child("Temp").val() < 20) {
+                window.location.href = './midnight.html';
+            }
+        });
+      </script>  
+      
+      <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/87538058&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+
+    
+  </body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <body>
+      <div>
+          <!-- <a href="./rain.html">rain</a>
+          <a href="./hot.html">hot</a>
+          <a href="./moring.html">moring</a>
+          <a href="./midnight.html">midnight</a> -->
+          <button onclick="myFunction()">Song 1</button>
+          <button onclick="myFunction2()">Song 2</button>
+          <button onclick="myFunction4()">reset</button>
+        </div> 
+      <p>light :</p>
+      <h1 id="Sensorl">Good Evening!</h1>
+      <p>Temp :</p>
+      <h1 id="Sensort">Good Evening!</h1>
+      <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase.js"></script>
+      <script>
+        
+        // Initialize Firebase
+        var config = {
+          apiKey: "AIzaSyCW6zOSzzsIyNXzPI8n__3eFmB8ofS7Yf4",
+          authDomain: "iot-wifi-71c20.firebaseapp.com",
+          databaseURL: "https://iot-wifi-71c20.firebaseio.com",
+          projectId: "iot-wifi-71c20",
+          storageBucket: "iot-wifi-71c20.appspot.com",
+          messagingSenderId: "710166421238"
+        };
+        firebase.initializeApp(config);
+        
+        function myFunction() {
+          firebase.database().ref().child('Sensor/lfake').set(777);
+        }
+        function myFunction2() {
+          firebase.database().ref().child('Sensor/lfake').set(888);
+        }
+        function myFunction3() {
+          firebase.database().ref().child('Sensor/lfake').set(0);
+          window.location.href = './rain.html';
+        }
+        function myFunction4() {
+          firebase.database().ref().child('Sensor/lfake').set(0);
+        }
+        var Sensorl = document.getElementById('Sensorl');
+        var Sensort = document.getElementById('Sensort');
+        var dbReflight = firebase.database().ref().child('Sensor/Temp');
+        var dbReflighl = firebase.database().ref().child('Sensor/Light');
+        dbReflighl.on('value', snap => Sensorl.innerText = snap.val());
+        dbReflight.on('value', snap => Sensort.innerText = snap.val());
+      </script>
+      <button onclick="myFunction3()">Start</button>
+
+    
+  </body>
+</html>

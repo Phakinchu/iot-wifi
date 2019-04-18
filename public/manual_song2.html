@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <body>
+
+
+      <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase.js"></script>
+      <script>
+        // Initialize Firebase
+        var config = {
+          apiKey: "AIzaSyCW6zOSzzsIyNXzPI8n__3eFmB8ofS7Yf4",
+          authDomain: "iot-wifi-71c20.firebaseapp.com",
+          databaseURL: "https://iot-wifi-71c20.firebaseio.com",
+          projectId: "iot-wifi-71c20",
+          storageBucket: "iot-wifi-71c20.appspot.com",
+          messagingSenderId: "710166421238"
+        };
+        firebase.initializeApp(config);
+
+        var sensor = firebase.database().ref().child('Sensor');
+
+        sensor.on('value', function(snapshot) {
+            console.log("not sss");
+            if (snapshot.child("lfake").val() == 0  ) {
+                console.log("sssss");
+                window.location.href = './rain.html';
+            }else if(snapshot.child("lfake").val() == 777 ){
+                window.location.href = './manual_song.html';
+            }
+        });
+        
+      </script> 
+      
+      <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/101560084&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+
+
+    
+  </body>
+</html>
