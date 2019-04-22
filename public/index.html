@@ -1,22 +1,145 @@
 <!DOCTYPE html>
 <html>
+<head>
+  <title>Tasted of music IoT</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <style>
+body, html {
+  height: 100%;
+  margin: 0;
+}
+* {
+  box-sizing: border-box;
+}
+.bg {
+  /* The image used รูป*/
+  background-image: url("pic/bg1.jpg");
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+.bg-text {
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+  color: white;
+  font-weight: bold;
+  border: 3px solid #f1f1f1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 80%;
+  padding: 20px;
+  text-align: center;
+
+}
+.text-block {
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+  color: white;
+  position: absolute;
+  center: 00px;
+  padding-left: 20px;
+  padding-right: 20px;
+  left: 50px;
+  top: 30%;
+  width: 75%;
+  text-align: center;
+  border-radius: 12px;
+}
+.btn-run{
+  position: absolute;
+    top: 90%;
+    left: 48%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    background-color: #4CAF50;
+    color: Black;
+    font-size: 32px;
+    padding: 16px 30px;
+    border-radius: 12px;
+    cursor: pointer;
+    text-align: center;
+    opacity: 0.9;
+}
+.btn-run:hover {
+  opacity: 1;
+  color: white;
+}
+
+</style>
+</head>
   <body>
-      <div>
-          <!-- <a href="./rain.html">rain</a>
-          <a href="./hot.html">hot</a>
-          <a href="./moring.html">moring</a>
-          <a href="./midnight.html">midnight</a> -->
-          <button onclick="myFunction()">Song 1</button>
-          <button onclick="myFunction2()">Song 2</button>
-          <button onclick="myFunction4()">reset</button>
-        </div> 
-      <p>light :</p>
-      <h1 id="Sensorl">Good Evening!</h1>
-      <p>Temp :</p>
-      <h1 id="Sensort">Good Evening!</h1>
+
+<!---->
+<div class="bg">
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="./index.html">Tasted of music IoT</a>
+
+</nav>
+
+<div class="row">
+ <div class="col-sm-3">
+
+   <div class="btn-group">
+       <!-- <a href="./rain.html">rain</a>
+       <a href="./hot.html">hot</a>
+       <a href="./moring.html">moring</a>
+       <a href="./midnight.html">midnight</a> -->
+       <button type="button" class="btn btn-primary" onclick="myFunction()">Song 1</button>
+       <button type="button" class="btn btn-info" onclick="myFunction2()">Song 2</button>
+       <button type="button" class="btn btn-danger" onclick="myFunction4()">reset</button>
+     </div>
+
+     <div class="col-sm-3">
+       <div class="col-sm-3">
+         <div class="col-sm-3">
+         </div>
+       </div>
+     </div>
+    </div>
+   </div>
+   <br>
+   </br>
+        <div class="row">
+         <div class="col-sm-6">
+           <div class="text-block" class="col-sm-4">
+             <p><h3>Light :</h3></p>
+             <img src="./pic/light2.jpg" style="width:60%; border-radius: 5px;"><!--/*รูป*/-->
+             <hr class="d-sm-none">
+             <h1 id="Sensorl">Good Evening!</h1>
+             <hr class="d-sm-none">
+           </div>
+         </div>
+         <div class="col-sm-6">
+           <div class="text-block" class="col-sm-4">
+             <p><h3>Temperature :</h3></p>
+               <img src="./pic/thermometer.jpg" style="width:60%; border-radius: 5px;"><!--/*รูป*/-->
+             <hr class="d-sm-none">
+             <h1 id="Sensort">Good Evening!</h1>
+             <hr class="d-sm-none">
+           </div>
+         </div>
+        </div>
+
+
+
       <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase.js"></script>
       <script>
-        
+
         // Initialize Firebase
         var config = {
           apiKey: "AIzaSyCW6zOSzzsIyNXzPI8n__3eFmB8ofS7Yf4",
@@ -27,7 +150,7 @@
           messagingSenderId: "710166421238"
         };
         firebase.initializeApp(config);
-        
+
         function myFunction() {
           firebase.database().ref().child('Sensor/lfake').set(777);
         }
@@ -48,8 +171,9 @@
         dbReflighl.on('value', snap => Sensorl.innerText = snap.val());
         dbReflight.on('value', snap => Sensort.innerText = snap.val());
       </script>
-      <button onclick="myFunction3()">Start</button>
 
-    
+      <button type="button" class="btn-run" onclick="myFunction3()">Start</button>
+
+    </div>
   </body>
 </html>
